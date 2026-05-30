@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Log in – FitConnect</title>
+</head>
+<body>
+    <h1>Log in</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log in</button>
+    </form>
+    <p><a href="{% url 'accounts:register' %}">Need an account? Sign up</a></p>
+</body>
+</html>
