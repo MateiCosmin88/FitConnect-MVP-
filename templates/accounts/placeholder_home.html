@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>FitConnect</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}FitConnect – home{% endblock %}
+
+{% block content %}
     <h1>FitConnect</h1>
-    <p>The events feature will land in Sprint 2.</p>
-</body>
-</html>
+    {% if user.is_authenticated %}
+        <p>Welcome back, {{ user.username }}.</p>
+        <p>The events feature will land in Sprint 2.</p>
+    {% else %}
+        <p>Organise or join fitness meetups near you.</p>
+        <p>
+            <a href="{% url 'accounts:register' %}">Create an account</a>
+            or <a href="{% url 'login' %}">log in</a>.
+        </p>
+    {% endif %}
+{% endblock %}

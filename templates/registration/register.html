@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Sign up – FitConnect</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Sign up – FitConnect{% endblock %}
+
+{% block content %}
     <h1>Sign up</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Create account</button>
     </form>
-</body>
-</html>
+    <p><a href="{% url 'login' %}">Already have an account? Log in</a></p>
+{% endblock %}
