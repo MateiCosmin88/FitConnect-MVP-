@@ -1,4 +1,5 @@
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -8,6 +9,12 @@ from .forms import SignUpForm
 
 def placeholder_home(request):
     return render(request, 'accounts/placeholder_home.html')
+
+
+@login_required
+def profile(request):
+    """Show the logged-in user's details (US04)."""
+    return render(request, 'accounts/profile.html', {'user_obj': request.user})
 
 
 class RegisterView(CreateView):
