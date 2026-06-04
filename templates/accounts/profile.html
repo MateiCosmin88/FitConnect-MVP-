@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile – FitConnect{% endblock %}
+
+{% block content %}
+    <h1>Your profile</h1>
+    <dl>
+        <dt>Username</dt>
+        <dd>{{ user_obj.username }}</dd>
+        <dt>Email</dt>
+        <dd>{{ user_obj.email|default:'—' }}</dd>
+        <dt>Joined</dt>
+        <dd>{{ user_obj.date_joined|date:'j M Y' }}</dd>
+    </dl>
+{% endblock %}
