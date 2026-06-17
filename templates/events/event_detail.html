@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ event.title }} – FitConnect{% endblock %}
+
+{% block content %}
+    <p><a href="{% url 'events:list' %}">← Back to events</a></p>
+    <h1>{{ event.title }}</h1>
+    <p><strong>{{ event.get_sport_display }}</strong> · {{ event.starts_at|date:'j M Y H:i' }} · {{ event.location }}</p>
+    <p>Organised by {{ event.organiser.username }}</p>
+    {% if event.description %}<p>{{ event.description|linebreaks }}</p>{% endif %}
+    {% if user == event.organiser %}
+        <p>
+            <a href="{% url 'events:edit' event.pk %}">Edit</a> ·
+            <a href="{% url 'events:delete' event.pk %}">Delete</a>
+        </p>
+    {% endif %}
+{% endblock %}

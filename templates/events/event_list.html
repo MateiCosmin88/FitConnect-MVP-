@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Upcoming events – FitConnect{% endblock %}
+
+{% block content %}
+    <h1>Upcoming events</h1>
+    {% if user.is_authenticated %}
+        <p><a href="{% url 'events:create' %}">+ Create event</a></p>
+    {% endif %}
+    {% if events %}
+        <ul>
+            {% for event in events %}
+                <li>
+                    <a href="{% url 'events:detail' event.pk %}">{{ event.title }}</a>
+                    – {{ event.starts_at|date:'j M Y H:i' }} at {{ event.location }}
+                    ({{ event.get_sport_display }})
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No upcoming events yet. {% if user.is_authenticated %}<a href="{% url 'events:create' %}">Be the first to create one</a>.{% endif %}</p>
+    {% endif %}
+{% endblock %}

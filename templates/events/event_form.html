@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if mode == 'edit' %}Edit event{% else %}Create event{% endif %} – FitConnect{% endblock %}
+
+{% block content %}
+    <h1>{% if mode == 'edit' %}Edit event{% else %}Create event{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if mode == 'edit' %}Save changes{% else %}Create{% endif %}</button>
+        {% if mode == 'edit' and event %}
+            <a href="{% url 'events:detail' event.pk %}">Cancel</a>
+        {% else %}
+            <a href="{% url 'events:list' %}">Cancel</a>
+        {% endif %}
+    </form>
+{% endblock %}
