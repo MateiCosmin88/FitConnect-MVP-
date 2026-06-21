@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard – FitConnect{% endblock %}
+
+{% block content %}
+    <h1>Your dashboard</h1>
+
+    <section>
+        <h2>Events you organise</h2>
+        {% if organised %}
+            <ul>
+                {% for event in organised %}
+                    <li>
+                        <a href="{% url 'events:detail' event.pk %}">{{ event.title }}</a>
+                        – {{ event.starts_at|date:'j M Y H:i' }} at {{ event.location }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You are not organising any upcoming events. <a href="{% url 'events:create' %}">Create one</a>.</p>
+        {% endif %}
+    </section>
+{% endblock %}

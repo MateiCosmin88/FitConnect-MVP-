@@ -13,6 +13,13 @@ def event_list(request):
     return render(request, 'events/event_list.html', {'events': events})
 
 
+@login_required
+def dashboard(request):
+    """Show the user's upcoming organised events (US08)."""
+    organised = Event.objects.upcoming().filter(organiser=request.user)
+    return render(request, 'events/dashboard.html', {'organised': organised})
+
+
 def event_detail(request, pk):
     """Show a single event (helper for later stories)."""
     event = get_object_or_404(Event, pk=pk)
