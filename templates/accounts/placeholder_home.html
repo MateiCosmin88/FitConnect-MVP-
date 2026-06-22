@@ -6,12 +6,13 @@
     <h1>FitConnect</h1>
     {% if user.is_authenticated %}
         <p>Welcome back, {{ user.username }}.</p>
-        <p>The events feature will land in Sprint 2.</p>
+        <p>Head to your <a href="{% url 'dashboard' %}">dashboard</a> or browse the <a href="{% url 'events:list' %}">upcoming events</a>.</p>
     {% else %}
-        <p>Organise or join fitness meetups near you.</p>
+        <p>Organise or join fitness meetups near you – running, yoga, hiking and more.</p>
         <p>
             <a href="{% url 'accounts:register' %}">Create an account</a>
-            or <a href="{% url 'login' %}">log in</a>.
+            or <a href="{% url 'login' %}">log in</a>
+            to get started, or just <a href="{% url 'events:list' %}">browse events</a>.
         </p>
     {% endif %}
 {% endblock %}
