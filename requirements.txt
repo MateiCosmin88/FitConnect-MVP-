@@ -1,1 +1,5 @@
 Django==5.0.4
+
+# Testing
+pytest==9.1.1
+pytest-django==4.12.0
