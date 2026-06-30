@@ -1,10 +1,12 @@
-"""Event views implementing the Sprint 2 CRUD stories."""
+"""Event views for Sprint 2 CRUD and Sprint 3 RSVP stories."""
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
 
 from .forms import EventForm
-from .models import Event
+from .models import Event, RSVP
+from .notifications import send_rsvp_confirmation
 
 
 def event_list(request):
@@ -15,9 +17,45 @@ def event_list(request):
 
 @login_required
 def dashboard(request):
-    """Show the user's upcoming organised events (US08)."""
+    """Show the user's upcoming organised events and RSVPs (US08)."""
     organised = Event.objects.upcoming().filter(organiser=request.user)
-    return render(request, 'events/dashboard.html', {'organised': organised})
+    attending = Event.objects.upcoming().filter(rsvps__user=request.user)
+    return render(request, 'events/dashboard.html', {
+        'organised': organised,
+        'attending': attending,
+    })
+
+
+@login_required
+@require_POST
+def rsvp(request, pk):
+    """RSVP to an event (US09). Idempotent."""
+    event = get_object_or_404(Event, pk=pk)
+    obj, created = RSVP.objects.get_or_create(event=event, user=request.user)
+    if created:
+        send_rsvp_confirmation(obj)
+    return redirect('events:detail', pk=event.pk)
+
+
+@login_required
+@require_POST
+def cancel_rsvp(request, pk):
+    """Cancel a previously created RSVP (US10)."""
+    event = get_object_or_404(Event, pk=pk)
+    RSVP.objects.filter(event=event, user=request.user).delete()
+    return redirect('events:detail', pk=event.pk)
+
+
+@login_required
+def attendees(request, pk):
+    """Show the attendee list – organiser only (US11)."""
+    event = get_object_or_404(Event, pk=pk)
+    if event.organiser_id != request.user.id:
+        raise PermissionDenied('Only the organiser can view attendees.')
+    return render(request, 'events/attendees.html', {
+        'event': event,
+        'attendees': event.attendees,
+    })
 
 
 def event_detail(request, pk):
