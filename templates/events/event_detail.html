@@ -8,10 +8,27 @@
     <p><strong>{{ event.get_sport_display }}</strong> · {{ event.starts_at|date:'j M Y H:i' }} · {{ event.location }}</p>
     <p>Organised by {{ event.organiser.username }}</p>
     {% if event.description %}<p>{{ event.description|linebreaks }}</p>{% endif %}
+
+    {% if user.is_authenticated and user != event.organiser %}
+        {% if user in event.attendees %}
+            <form action="{% url 'events:cancel_rsvp' event.pk %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Cancel RSVP</button>
+            </form>
+            <span>You are attending.</span>
+        {% else %}
+            <form action="{% url 'events:rsvp' event.pk %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Join</button>
+            </form>
+        {% endif %}
+    {% endif %}
+
     {% if user == event.organiser %}
         <p>
             <a href="{% url 'events:edit' event.pk %}">Edit</a> ·
-            <a href="{% url 'events:delete' event.pk %}">Delete</a>
+            <a href="{% url 'events:delete' event.pk %}">Delete</a> ·
+            <a href="{% url 'events:attendees' event.pk %}">View attendees ({{ event.attendees.count }})</a>
         </p>
     {% endif %}
 {% endblock %}
