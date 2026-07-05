@@ -5,6 +5,20 @@
 {% block content %}
     <h1>Your dashboard</h1>
 
+    {% if reminders %}
+        <div style="background: #fff3cd; border: 1px solid #ffe69c; padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem;">
+            <strong>Reminder:</strong> you have events in the next 24 hours:
+            <ul style="margin: 0.25rem 0 0 1.25rem;">
+                {% for event in reminders %}
+                    <li>
+                        <a href="{% url 'events:detail' event.pk %}">{{ event.title }}</a>
+                        – {{ event.starts_at|date:'j M Y H:i' }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
     <section>
         <h2>Events you organise</h2>
         {% if organised %}
@@ -18,6 +32,22 @@
             </ul>
         {% else %}
             <p>You are not organising any upcoming events. <a href="{% url 'events:create' %}">Create one</a>.</p>
+        {% endif %}
+    </section>
+
+    <section>
+        <h2>Events you are attending</h2>
+        {% if attending %}
+            <ul>
+                {% for event in attending %}
+                    <li>
+                        <a href="{% url 'events:detail' event.pk %}">{{ event.title }}</a>
+                        – {{ event.starts_at|date:'j M Y H:i' }} at {{ event.location }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You are not attending any upcoming events. <a href="{% url 'events:list' %}">Find one to join</a>.</p>
         {% endif %}
     </section>
 {% endblock %}
