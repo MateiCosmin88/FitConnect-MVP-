@@ -17,12 +17,26 @@ def event_list(request):
 
 @login_required
 def dashboard(request):
-    """Show the user's upcoming organised events and RSVPs (US08)."""
+    """User dashboard with organised events, RSVPs and 24h reminders (US08, US13)."""
+    from datetime import timedelta
+    from django.utils import timezone
+    from django.db.models import Q
+
     organised = Event.objects.upcoming().filter(organiser=request.user)
     attending = Event.objects.upcoming().filter(rsvps__user=request.user)
+
+    horizon = timezone.now() + timedelta(hours=24)
+    reminders = (
+        Event.objects.upcoming()
+        .filter(starts_at__lte=horizon)
+        .filter(Q(organiser=request.user) | Q(rsvps__user=request.user))
+        .distinct()
+    )
+
     return render(request, 'events/dashboard.html', {
         'organised': organised,
         'attending': attending,
+        'reminders': reminders,
     })
 
 
