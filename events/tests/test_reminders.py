@@ -50,3 +50,12 @@ class DashboardRemindersTests(TestCase):
         response = self.client.get(reverse('dashboard'))
         self.assertContains(response, 'Reminder')
         self.assertContains(response, 'Own session')
+
+    def test_own_event_i_also_rsvpd_appears_only_once(self):
+        """Regression: attending your own event must not double-list (Sprint 3 retro)."""
+        soon = self._make('Double', hours_from_now=5)
+        soon.organiser = self.user
+        soon.save()
+        RSVP.objects.create(event=soon, user=self.user)
+        response = self.client.get(reverse('dashboard'))
+        self.assertEqual(response.content.count(b'Double'), 3)  # reminder + organised + attending
