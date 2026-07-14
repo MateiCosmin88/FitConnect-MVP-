@@ -31,3 +31,35 @@ Each retrospective adds a line here summarising any changes made to
 the register.
 
 - **Sprint 0 review (27 May)** – Register initialised with 10 risks.
+- **Sprint 1 review (10 Jun)** – R10 closed (whole team touched auth).
+- **Sprint 2 review (24 Jun)** – R03 status maintained after
+  velocity data point.
+- **Sprint 3 review (8 Jul)** – R04 closed (email backend swap
+  proven safe).
+- **Sprint 4 pre-mortem (9 Jul)** – see next section.
+
+## Sprint 4 Pre-Mortem
+
+Following the technique described in Week 11 (Agile Risk Management),
+the team ran a 20-minute **Pre-Mortem** at the start of Sprint 4 –
+*"imagine the project has failed catastrophically; walk backwards and
+list every reason why"*. The point is to surface risks that we might
+not otherwise voice.
+
+Voices captured:
+
+| ID  | Pre-Mortem risk                                                          | Mitigation added                                              |
+|-----|--------------------------------------------------------------------------|---------------------------------------------------------------|
+| P01 | "The Bootstrap swap breaks all 40 tests and we panic the day before demo" | Do the swap on day one of Sprint 4, run the suite after every template. |
+| P02 | "The email tests pass locally but the SMTP backend explodes in front of the class" | Keep the console email backend for the demo; add an override flag documented in the retrospective. |
+| P03 | "Nobody can reproduce the running site because setup instructions are unclear" | Rewrite README quickstart, verify it works on a fresh machine. |
+| P04 | "The three of us disagree on story points in Sprint 4 and delivery slips" | Fix Sprint 4 capacity at 9 points during planning; anything else deferred. |
+| P05 | "CI is red on the demo day"                                              | Green CI status is now part of the Definition of Done. |
+
+Each Pre-Mortem item was checked at the end of Sprint 4:
+
+- **P01** – no test broke during the Bootstrap swap.
+- **P02** – console backend used for the demo.
+- **P03** – README rewrite committed on 16 Jul.
+- **P04** – Sprint 4 delivered on scope with no overflow.
+- **P05** – workflow badge green at hand-in.
