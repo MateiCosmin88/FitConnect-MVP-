@@ -14,3 +14,7 @@ sprint,date,points_remaining,points_completed,notes
 3,2026-07-01,4,8,US09/US10/US11/US12 RSVP flow and email shipped
 3,2026-07-05,2,10,US13 reminder banner shipped
 3,2026-07-08,0,12,Sprint 3 review – all stories accepted
+4,2026-07-09,9,0,Sprint 4 planning – 9 points committed
+4,2026-07-11,6,3,Bootstrap swap and landing page shipped
+4,2026-07-13,3,6,Exploratory testing bugs fixed
+4,2026-07-16,0,9,Sprint 4 review – MVP demo ready
