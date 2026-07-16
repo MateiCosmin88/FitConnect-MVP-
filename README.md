@@ -59,14 +59,29 @@ docs/                 Agile project artefacts (backlog, sprints, risks)
 
 ## Agile artefacts
 
-- `docs/product_backlog.md` – prioritised user stories
-- `docs/sprint_plan.md` – 8-week sprint schedule
-- `docs/definition_of_done.md` – DoD and TDD cycle policy
-- `docs/risk_register.md` – Agile Risk Board
-- `docs/atdd_examples.md` – ATDD/BDD examples for three stories
+Aligned with the SWE6301 learning outcomes:
+
+**Methodology and planning**
+- `docs/methodology_justification.md` – why Scrum + Kanban + XP hybrid
+- `docs/agile_vs_waterfall.md` – critical comparison (LO1)
+- `docs/product_backlog.md` – prioritised MoSCoW user stories
+- `docs/sprint_plan.md` – 8-week sprint schedule and Agile Manifesto
+  values applied
+
+**Testing and quality**
+- `docs/testing_strategy.md` – Testing Pyramid, TDD, ATDD, exploratory
+- `docs/definition_of_done.md` – DoD, TDD cycle, Boy Scout Rule, Muda
+- `docs/atdd_examples.md` – Given/When/Then examples for three stories
+- `.github/workflows/ci.yml` – GitHub Actions CI on push/PR
+
+**Risk and ethics**
+- `docs/risk_register.md` – Agile Risk Board + Sprint 4 Pre-Mortem
+- `docs/ethics_and_conduct.md` – BCS Code of Conduct reflection
+
+**Sprint-by-sprint evidence**
+- `docs/sprints/sprintN/` – board, retrospective, and additional
+  artefacts (exploratory testing findings in Sprint 4)
 - `docs/burndown.csv` – velocity data for all four sprints
-- `docs/sprints/sprintN/` – per-sprint board, retrospective and any
-  additional artefacts (exploratory testing findings in Sprint 4)
 
 ## Delivery summary
 
