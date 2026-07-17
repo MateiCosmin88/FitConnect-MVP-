@@ -1,7 +1,11 @@
 """Event views for Sprint 2 CRUD and Sprint 3 RSVP stories."""
+from datetime import timedelta
+
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils import timezone
 from django.views.decorators.http import require_POST
 
 from .forms import EventForm
@@ -18,10 +22,6 @@ def event_list(request):
 @login_required
 def dashboard(request):
     """User dashboard with organised events, RSVPs and 24h reminders (US08, US13)."""
-    from datetime import timedelta
-    from django.utils import timezone
-    from django.db.models import Q
-
     organised = Event.objects.upcoming().filter(organiser=request.user)
     attending = Event.objects.upcoming().filter(rsvps__user=request.user)
 
