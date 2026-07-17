@@ -45,7 +45,7 @@ except Sprint 0 (setup, 1 week) and Sprint 4 (polish, 1 week).
 
 | Member          | Primary responsibility (lead)                        |
 |-----------------|------------------------------------------------------|
-| 91Eduard        | Backend, data models, business logic                 |
+| 91Edward        | Backend, data models, business logic                 |
 | GMatei90        | Tests, QA, documentation, CI                         |
 | MateiCosmin88   | Views, templates, UI/UX, Scrum Master                |
 
