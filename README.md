@@ -2,8 +2,8 @@
 
 FitConnect is a web platform that helps people organise and join fitness
 meetups and wellness events — running clubs, yoga classes, group hikes,
-cycling meets and similar. Delivered as an 8-week Agile group project
-for the SWE6301 module.
+cycling meets and similar. Built by a three-person team over 8 weeks
+following Agile practices.
 
 ## Team
 
@@ -59,7 +59,7 @@ docs/                 Agile project artefacts (backlog, sprints, risks)
 
 ## Agile artefacts
 
-Aligned with the SWE6301 learning outcomes:
+Grouped by concern:
 
 **Methodology and planning**
 - `docs/methodology_justification.md` – why Scrum + Kanban + XP hybrid
