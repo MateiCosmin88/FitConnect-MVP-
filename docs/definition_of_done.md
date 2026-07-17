@@ -13,8 +13,8 @@ reviewed in every sprint retrospective.
   for communication**" (Robert Martin).
 - Feature branches are merged into `main` via pull request, never
   directly.
-- **Boy Scout Rule** – leave the module a little cleaner than you
-  found it. Any file you touched for the story should not be worse in
+- **Boy Scout Rule** – leave the code a little cleaner than you found
+  it. Any file you touched for the story should not be worse in
   style, cohesion or naming after the change.
 
 ## Testing (TDD → Testing Pyramid)
@@ -27,8 +27,7 @@ reviewed in every sprint retrospective.
   test`).
 - Overall coverage of app code does not fall below 80 %.
 - Every user-facing story has at least one acceptance test that goes
-  through the Django test client, in line with the Testing Pyramid
-  taught in Week 3.
+  through the Django test client, in line with the Testing Pyramid.
 
 ## Documentation ("Living Documentation")
 
@@ -60,7 +59,7 @@ The classical **Red / Green / Refactor** cycle:
    as `refactor: <what>` when the change is not trivial.
 
 The commit history intentionally preserves the red / green pairs so
-that Agile evidence of TDD is visible for the assessment.
+that TDD activity is visible to any reader of the log.
 
 ## Avoiding Muda (Lean waste)
 
