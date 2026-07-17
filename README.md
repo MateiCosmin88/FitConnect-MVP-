@@ -9,7 +9,7 @@ following Agile practices.
 
 | Member          | Role                                     |
 |-----------------|------------------------------------------|
-| 91Eduard        | Backend, data models, business logic     |
+| 91Edward        | Backend, data models, business logic     |
 | GMatei90        | Tests, QA, documentation                 |
 | MateiCosmin88   | Views, templates, UI/UX, Scrum Master    |
 
