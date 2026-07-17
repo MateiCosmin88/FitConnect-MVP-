@@ -12,7 +12,11 @@ from django.utils import timezone
 class EventQuerySet(models.QuerySet):
 
     def upcoming(self):
-        return self.filter(starts_at__gte=timezone.now()).order_by('starts_at')
+        return (
+            self.filter(starts_at__gte=timezone.now())
+            .select_related('organiser')
+            .order_by('starts_at')
+        )
 
 
 class Event(models.Model):
