@@ -3,6 +3,7 @@ from datetime import timedelta
 
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
@@ -16,7 +17,10 @@ from .notifications import send_rsvp_confirmation
 def event_list(request):
     """List upcoming events (US07)."""
     events = Event.objects.upcoming()
-    return render(request, 'events/event_list.html', {'events': events})
+    paginator = Paginator(events, 10)
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
+    return render(request, 'events/event_list.html', {'events': page, 'page': page})
 
 
 @login_required
