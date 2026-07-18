@@ -25,10 +25,7 @@
             {% if organised %}
                 <div class="list-group">
                     {% for event in organised %}
-                        <a class="list-group-item list-group-item-action" href="{% url 'events:detail' event.pk %}">
-                            <strong>{{ event.title }}</strong>
-                            <div class="text-muted small">{{ event.starts_at|date:'j M Y H:i' }} · {{ event.location }}</div>
-                        </a>
+                        {% include 'events/_event_card.html' with event=event %}
                     {% endfor %}
                 </div>
             {% else %}
@@ -41,10 +38,7 @@
             {% if attending %}
                 <div class="list-group">
                     {% for event in attending %}
-                        <a class="list-group-item list-group-item-action" href="{% url 'events:detail' event.pk %}">
-                            <strong>{{ event.title }}</strong>
-                            <div class="text-muted small">{{ event.starts_at|date:'j M Y H:i' }} · {{ event.location }}</div>
-                        </a>
+                        {% include 'events/_event_card.html' with event=event %}
                     {% endfor %}
                 </div>
             {% else %}

@@ -1,0 +1,10 @@
+<a class="list-group-item list-group-item-action" href="{% url 'events:detail' event.pk %}">
+    <div class="d-flex justify-content-between">
+        <div>
+            <strong>{{ event.title }}</strong>
+            <span class="badge bg-secondary ms-2">{{ event.get_sport_display }}</span>
+        </div>
+        <small class="text-muted">{{ event.starts_at|date:'j M Y H:i' }}</small>
+    </div>
+    <small class="text-muted">{{ event.location }} · Organised by {{ event.organiser.username }}</small>
+</a>
