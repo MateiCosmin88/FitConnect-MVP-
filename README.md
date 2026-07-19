@@ -25,7 +25,6 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-The site is then available at http://127.0.0.1:8000.
 
 ## Running the tests
 
