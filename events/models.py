@@ -4,6 +4,7 @@ Represents a fitness meet-up organised by a user. Kept intentionally small
 for the MVP; capacity and RSVP relations are added in Sprint 3.
 """
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
 
@@ -47,3 +48,29 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def attendees(self):
+        """Return the users who have RSVP'd to this event."""
+        return get_user_model().objects.filter(rsvps__event=self)
+
+
+class RSVP(models.Model):
+    """A user's intent to attend an event (Sprint 3, US09)."""
+
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='rsvps')
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='rsvps',
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['event', 'user'], name='unique_rsvp_per_user_event'),
+        ]
+        ordering = ['created_at']
+
+    def __str__(self):
+        return f'{self.user} → {self.event}'
