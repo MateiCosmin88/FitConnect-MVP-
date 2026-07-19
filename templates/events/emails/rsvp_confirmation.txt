@@ -1,0 +1,10 @@
+Hi {{ user.username }},
+
+You are confirmed for "{{ event.title }}" on {{ event.starts_at|date:"j M Y H:i" }}
+at {{ event.location }}.
+
+Organiser: {{ event.organiser.username }}
+
+You can cancel your RSVP any time from the event page.
+
+— FitConnect
