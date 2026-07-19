@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Attendees – {{ event.title }}{% endblock %}
+
+{% block content %}
+    <p><a href="{% url 'events:detail' event.pk %}">← Back to event</a></p>
+    <h1>Attendees for "{{ event.title }}"</h1>
+    {% if attendees %}
+        <ul>
+            {% for attendee in attendees %}
+                <li>{{ attendee.username }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nobody has RSVP'd yet.</p>
+    {% endif %}
+{% endblock %}

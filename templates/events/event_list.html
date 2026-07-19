@@ -3,21 +3,33 @@
 {% block title %}Upcoming events – FitConnect{% endblock %}
 
 {% block content %}
-    <h1>Upcoming events</h1>
-    {% if user.is_authenticated %}
-        <p><a href="{% url 'events:create' %}">+ Create event</a></p>
-    {% endif %}
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3 mb-0">Upcoming events</h1>
+        {% if user.is_authenticated %}
+            <a class="btn btn-primary" href="{% url 'events:create' %}">+ Create event</a>
+        {% endif %}
+    </div>
+
     {% if events %}
-        <ul>
+        <div class="list-group">
             {% for event in events %}
-                <li>
-                    <a href="{% url 'events:detail' event.pk %}">{{ event.title }}</a>
-                    – {{ event.starts_at|date:'j M Y H:i' }} at {{ event.location }}
-                    ({{ event.get_sport_display }})
-                </li>
+                <a class="list-group-item list-group-item-action" href="{% url 'events:detail' event.pk %}">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <strong>{{ event.title }}</strong>
+                            <span class="badge bg-secondary ms-2">{{ event.get_sport_display }}</span>
+                        </div>
+                        <small class="text-muted">{{ event.starts_at|date:'j M Y H:i' }}</small>
+                    </div>
+                    <small class="text-muted">{{ event.location }} · Organised by {{ event.organiser.username }}</small>
+                </a>
             {% endfor %}
-        </ul>
+        </div>
     {% else %}
-        <p>No upcoming events yet. {% if user.is_authenticated %}<a href="{% url 'events:create' %}">Be the first to create one</a>.{% endif %}</p>
+        <p class="text-muted">No upcoming events yet.
+            {% if user.is_authenticated %}
+                <a href="{% url 'events:create' %}">Be the first to create one</a>.
+            {% endif %}
+        </p>
     {% endif %}
 {% endblock %}
