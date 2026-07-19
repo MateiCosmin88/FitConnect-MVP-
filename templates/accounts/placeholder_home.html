@@ -1,11 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>FitConnect</title>
-</head>
-<body>
-    <h1>FitConnect</h1>
-    <p>The events feature will land in Sprint 2.</p>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}FitConnect – home{% endblock %}
+
+{% block content %}
+    <section class="fc-hero text-center">
+        <h1 class="display-5 fw-bold">FitConnect</h1>
+        <p class="lead">Organise or join fitness meetups near you – running, yoga, hiking and more.</p>
+        {% if user.is_authenticated %}
+            <a class="btn btn-light btn-lg" href="{% url 'dashboard' %}">Go to your dashboard</a>
+            <a class="btn btn-outline-light btn-lg" href="{% url 'events:list' %}">Browse events</a>
+        {% else %}
+            <a class="btn btn-light btn-lg" href="{% url 'accounts:register' %}">Sign up</a>
+            <a class="btn btn-outline-light btn-lg" href="{% url 'events:list' %}">Browse events</a>
+        {% endif %}
+    </section>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <h3 class="h5">Discover</h3>
+            <p class="text-muted">Find running clubs, yoga sessions, group hikes and cycling meets around you.</p>
+        </div>
+        <div class="col-md-4">
+            <h3 class="h5">Join</h3>
+            <p class="text-muted">RSVP in one click and get an email confirmation, plus a 24 hour reminder on your dashboard.</p>
+        </div>
+        <div class="col-md-4">
+            <h3 class="h5">Organise</h3>
+            <p class="text-muted">Create your own session, edit as plans change, and see who is coming.</p>
+        </div>
+    </div>
+{% endblock %}
