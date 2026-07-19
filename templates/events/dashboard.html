@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard – FitConnect{% endblock %}
+
+{% block content %}
+    <h1 class="h3 mb-4">Your dashboard</h1>
+
+    {% if reminders %}
+        <div class="alert fc-reminder bg-warning-subtle">
+            <strong>Reminder:</strong> you have events in the next 24 hours:
+            <ul class="mb-0 mt-1">
+                {% for event in reminders %}
+                    <li>
+                        <a href="{% url 'events:detail' event.pk %}">{{ event.title }}</a>
+                        – {{ event.starts_at|date:'j M Y H:i' }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <div class="row g-4">
+        <section class="col-md-6">
+            <h2 class="h5">Events you organise</h2>
+            {% if organised %}
+                <div class="list-group">
+                    {% for event in organised %}
+                        <a class="list-group-item list-group-item-action" href="{% url 'events:detail' event.pk %}">
+                            <strong>{{ event.title }}</strong>
+                            <div class="text-muted small">{{ event.starts_at|date:'j M Y H:i' }} · {{ event.location }}</div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-muted">You are not organising any upcoming events. <a href="{% url 'events:create' %}">Create one</a>.</p>
+            {% endif %}
+        </section>
+
+        <section class="col-md-6">
+            <h2 class="h5">Events you are attending</h2>
+            {% if attending %}
+                <div class="list-group">
+                    {% for event in attending %}
+                        <a class="list-group-item list-group-item-action" href="{% url 'events:detail' event.pk %}">
+                            <strong>{{ event.title }}</strong>
+                            <div class="text-muted small">{{ event.starts_at|date:'j M Y H:i' }} · {{ event.location }}</div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-muted">You are not attending any upcoming events. <a href="{% url 'events:list' %}">Find one to join</a>.</p>
+            {% endif %}
+        </section>
+    </div>
+{% endblock %}
