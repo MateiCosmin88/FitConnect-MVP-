@@ -3,13 +3,17 @@
 {% block title %}Profile – FitConnect{% endblock %}
 
 {% block content %}
-    <h1>Your profile</h1>
-    <dl>
-        <dt>Username</dt>
-        <dd>{{ user_obj.username }}</dd>
-        <dt>Email</dt>
-        <dd>{{ user_obj.email|default:'—' }}</dd>
-        <dt>Joined</dt>
-        <dd>{{ user_obj.date_joined|date:'j M Y' }}</dd>
-    </dl>
+    <h1 class="h3">Your profile</h1>
+    <div class="card">
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-3">Username</dt>
+                <dd class="col-sm-9">{{ user_obj.username }}</dd>
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">{{ user_obj.email|default:'—' }}</dd>
+                <dt class="col-sm-3">Joined</dt>
+                <dd class="col-sm-9">{{ user_obj.date_joined|date:'j M Y' }}</dd>
+            </dl>
+        </div>
+    </div>
 {% endblock %}
