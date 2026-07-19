@@ -1,13 +1,11 @@
 # Testing strategy
 
-Learning Outcome 3 asks the student to *"design and implement robust
-testing strategies based on agile approaches"*. This document explains
-the strategy used on FitConnect and where the evidence lives.
+This document explains the testing approach used on FitConnect and
+where the evidence lives.
 
 ## The Testing Pyramid
 
-The team followed the classical Testing Pyramid taught in Week 3 of
-the module.
+The team followed the classical Testing Pyramid.
 
 ```
               /\
@@ -31,7 +29,7 @@ the module.
   Sprint 4, documented in
   `docs/sprints/sprint4/exploratory_testing.md`.
 
-## TDD cycle (Week 2 material)
+## TDD cycle
 
 Every user-facing feature was built following **Red-Green-Refactor**:
 
@@ -43,10 +41,10 @@ Every user-facing feature was built following **Red-Green-Refactor**:
    as `refactor:` if the change is not trivial.
 
 The red/green pairs are deliberately preserved in the commit history
-for assessment evidence — a marker can walk from `test:` to `feat:`
-and see the change grow.
+so that a new team member (or a code reviewer) can walk from `test:`
+to `feat:` and see the change grow.
 
-## ATDD / BDD (Week 6 material)
+## ATDD / BDD
 
 Acceptance criteria for each story are written in Given / When / Then
 form on the sprint board card before implementation. Three worked
@@ -54,7 +52,7 @@ examples are captured in `docs/atdd_examples.md` (US02 login,
 US09 join event, US13 reminder banner) with the corresponding Django
 tests referenced.
 
-## Exploratory testing (Week 3 layers)
+## Exploratory testing
 
 At the start of Sprint 4 the whole team ran a 90-minute exploratory
 session against the running site. Charter, findings and follow-up
@@ -63,7 +61,7 @@ actions live in
 the two critical ones (B02 mobile overflow, B04 double-submit RSVP)
 were fixed the same day.
 
-## Continuous Integration (Week 10 material)
+## Continuous Integration
 
 Every push to `main` or `develop` triggers `.github/workflows/ci.yml`,
 which:

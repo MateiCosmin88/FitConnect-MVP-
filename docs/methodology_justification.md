@@ -1,17 +1,17 @@
 # Methodology justification
 
-Learning Outcome 2 asks the student to *"formulate and justify appropriate
-project and risk management strategies"*. This note explains why the
-FitConnect team chose a **Scrum + Kanban + XP hybrid** rather than any
-one framework in its pure form.
+The team needed to pick a project- and risk-management approach that
+fitted an 8-week delivery with three people and a low-tolerance-for-
+waste client. This note explains why we chose a **Scrum + Kanban + XP
+hybrid** rather than any one framework in its pure form.
 
 ## Frameworks considered
 
 | Framework          | What it emphasises                                                                        | Fit for FitConnect                                              |
 |--------------------|-------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| **Scrum**          | Time-boxed sprints, defined roles (PO, SM, Dev), planning + review + retrospective        | Strong fit — 8-week module maps cleanly to 4 × 2-week sprints. |
+| **Scrum**          | Time-boxed sprints, defined roles (PO, SM, Dev), planning + review + retrospective        | Strong fit — 8 weeks maps cleanly to 4 × 2-week sprints.       |
 | **Kanban**         | Continuous flow, WIP limits, pull-based board columns                                     | Useful for visualising cards during a sprint.                   |
-| **XP**             | TDD, pair programming, refactoring, collective ownership, continuous integration          | Very strong fit — TDD is a course requirement.                  |
+| **XP**             | TDD, pair programming, refactoring, collective ownership, continuous integration          | Very strong fit — the client wanted engineering rigour.         |
 | **DSDM**           | Business roles, MoSCoW prioritisation, timeboxing                                         | Overhead too high for a 3-person team; only borrow MoSCoW.     |
 | **FDD**            | Feature-driven, class-owner per feature                                                   | Rigid ownership contradicts the "collective ownership" goal.   |
 | **Crystal Clear**  | Small co-located teams, frequent delivery                                                 | Compatible but adds no distinct artefact we need.               |
@@ -27,8 +27,7 @@ one framework in its pure form.
   list in `git shortlog`), Continuous Integration via GitHub Actions,
   and simple design ("do the simplest thing that could possibly work").
 - **Kanban** provides the visualisation — the sprint board in Trello
-  uses Backlog → Ready → In Progress → In Review → Done, exactly the
-  columns described in the module slides.
+  uses Backlog → Ready → In Progress → In Review → Done.
 - **MoSCoW** (borrowed from DSDM) drives the ordering of the product
   backlog and keeps the team honest about "Must vs Should" during
   planning.
@@ -50,19 +49,19 @@ top of every sprint planning session, and any newly discovered risks
 are recorded in `docs/risk_register.md` with likelihood × impact
 scoring. Sprint 4 also uses the **Pre-Mortem** technique (see the
 Pre-Mortem section of the risk register) to flush out end-of-project
-risks before the final demo.
+risks before the final client demo.
 
 ## Why not "just Scrum" or "just XP"
 
-- **Pure Scrum** would not mandate TDD or CI, and the module rubric
-  penalises weak testing evidence.
+- **Pure Scrum** would not mandate TDD or CI, and our client explicitly
+  asked for evidence of test-first work.
 - **Pure XP** would not force sprint boundaries; without them the team
-  would struggle to slot delivery against the 8-week module cadence
-  and the review meetings with the tutor.
+  would struggle to slot delivery against the fixed 8-week cadence and
+  the review meetings with the client.
 - **Pure Kanban** would give no timeboxes and no forced retrospectives;
   velocity would be harder to track.
 
 The hybrid keeps the accountability of Scrum, the engineering rigour
 of XP, and the visual clarity of Kanban, at a total ceremony overhead
-of about 90 minutes per sprint — an acceptable cost for a 3-person,
-part-time student team.
+of about 90 minutes per sprint — an acceptable cost for a three-person
+team.
